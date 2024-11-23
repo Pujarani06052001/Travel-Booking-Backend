@@ -1,20 +1,26 @@
 {
-  "name": "backend",
+  "name": "travel-booking-backend",
   "version": "1.0.0",
+  "description": "A backend service for managing travel bookings using Express, MongoDB, and Node.js.",
   "main": "server.js",
   "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js",
-    "vercel-build": "echo hello"
+    "dev": "nodemon server.js",
+    "build": "echo \"No build step for backend\"",
+    "test": "echo \"No tests specified\" && exit 0",
+    "vercel-build": "node server.js"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": ["travel", "booking", "CMS", "backend"],
+  "author": "Your Name",
   "license": "ISC",
-  "description": "",
   "dependencies": {
     "bcrypt": "^5.1.1",
     "cors": "^2.8.5",
-    "express": "^4.21.1"
+    "express": "^4.21.1",
+    "mongoose": "^7.2.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
   }
 }
