@@ -1,10 +1,10 @@
 import express from 'express';
 import jwt from 'jsonwebtoken';
-import bcrypt from 'bcrypt';
+import  bcryptjs from 'bcryptjs';
 import Admin from '../models/admin.js';
 
 const router = express.Router();
-const SECRET_KEY = 'your_secret_key';
+const SECRET_KEY =  'your_secret_key';
 
 // Admin Signup
 router.post('/signup', async (req, res) => {
@@ -18,7 +18,7 @@ router.post('/signup', async (req, res) => {
     }
 
     // Hash the password
-    const hashedPassword = await bcrypt.hash(password, 10);
+    const hashedPassword = await bcryptjs.hash(password, 10);
 
     // Create a new admin
     const newAdmin = new Admin({
@@ -45,7 +45,7 @@ router.post('/login', async (req, res) => {
     const admin = await Admin.findOne({ username });
     if (!admin) return res.status(404).json({ message: 'Admin not found' });
 
-    const isPasswordValid = await bcrypt.compare(password, admin.password);
+    const isPasswordValid = await bcryptjs.compare(password, admin.password);
     if (!isPasswordValid) return res.status(401).json({ message: 'Invalid credentials' });
 
     const token = jwt.sign({ id: admin._id }, SECRET_KEY, { expiresIn: '1h' });
